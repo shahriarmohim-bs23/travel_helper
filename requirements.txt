@@ -3,7 +3,7 @@ djangorestframework==3.14.0
 django-cors-headers==3.7.0
 python-dotenv==1.0.0
 psycopg2-binary==2.9.6
-openmeteo-requests
-requests-cache
-retry-requests
-numpy
+openmeteo-requests==1.1.0
+requests-cache==1.1.1
+retry-requests==2.0.0
+numpy==1.26.3
