@@ -29,6 +29,10 @@ DEBUG=True
 ```
 pip3 install -r requirements.txt
 ```
+### Running Migrations
+```
+python3 manage.py migrate
+```
 ### Create a Superuser
 ```
 python3 manage.py createsuperuser
