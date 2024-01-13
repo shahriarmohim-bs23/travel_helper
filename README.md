@@ -26,11 +26,17 @@ SECRET_KEY=mysecretkey
 DEBUG=True
 ```
 ### Install Dependencies
+```
 pip3 install -r requirements.txt
+```
 ### Create a Superuser
+```
 python3 manage.py createsuperuser
+```
 ### Run the Project
+```
 python3 manage.py runserver
+```
 
 
 
