@@ -10,16 +10,7 @@ pip3 install virtualenv
 virtualenv venv
 source venv/bin/activate
 ```
-### Create .env File
-```
-# Database configuration
-
-POSTGRES_DB=postgres(example) 
-POSTGRES_USER=postgres(example) 
-POSTGRES_PASSWORD=postgres(example) 
-POSTGRES_HOST=localhost 
-POSTGRES_PORT=5432
-
+### Create .env File(Optional)
 # Secret key for Django (replace with a strong, random value)
 SECRET_KEY=mysecretkey
 # Other configuration variables
