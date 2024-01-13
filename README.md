@@ -11,9 +11,13 @@ virtualenv venv
 source venv/bin/activate
 ```
 ### Create .env File(Optional)
+
 # Secret key for Django (replace with a strong, random value)
+```
 SECRET_KEY=mysecretkey
+```
 # Other configuration variables
+```
 DEBUG=True
 ```
 ### Install Dependencies
