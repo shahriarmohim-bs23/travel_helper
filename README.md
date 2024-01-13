@@ -7,19 +7,18 @@ pip3 install virtualenv
 virtualenv venv
 source venv/bin/activate
 ## Create .env File
-# Database configuration
+Database configuration
 POSTGRES_DB=postgres(example)
 POSTGRES_USER=postgres(example)
 POSTGRES_PASSWORD=postgres(example)
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
-# Secret key for Django (replace with a strong, random value)
+Secret key for Django (replace with a strong, random value)
 SECRET_KEY=mysecretkey
 
-# Other configuration variables
+Other configuration variables
 DEBUG=True
 ## Install Dependencies
-# Example for Python projects using pip
 pip3 install -r requirements.txt
 ## Create a Superuser
 python3 manage.py createsuperuser
