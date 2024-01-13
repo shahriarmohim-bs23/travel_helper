@@ -26,13 +26,19 @@ openmeteo = openmeteo_requests.Client(
 
 class DistrictTemperature:
     @staticmethod
-    def get_temperature(district):
+    def get_temperature(
+            district,
+            forecast_days=None,
+            date=None
+    ):
         params = {
             "latitude": district.get('lat'),
             "longitude": district.get('long'),
             "hourly": "temperature_2m",
             "timezone": "auto",
-            "forecast_days": 7
+            "forecast_days": forecast_days,
+            "start_date": date,
+            "end_date": date
         }
 
         responses = openmeteo.weather_api(
@@ -41,21 +47,22 @@ class DistrictTemperature:
         )
 
         hourly = responses[0].Hourly()
-        temperatures_at_2pm = hourly.Variables(0).ValuesAsNumpy()[
-                              14::24]
-        average_temperature = (sum(temperatures_at_2pm) /
-                               len(temperatures_at_2pm))
+        temperatures = hourly.Variables(0).ValuesAsNumpy()
 
-        return average_temperature
+        return temperatures
 
-    def get_district_temperature(self):
+    def get_districts_temperature(self):
         district_temperatures = []
         response = requests.get(district_url)
         if response.status_code == 200:
             json_data = response.json()
             districts_info = json_data.get('districts', [])
             for district in districts_info:
-                average_temperature = self.get_temperature(district)
+                temperatures = self.get_temperature(district=district,
+                                                    forecast_days=7)
+                temperatures_at_2pm = temperatures[14::24]
+                average_temperature = (sum(temperatures_at_2pm) /
+                                       len(temperatures_at_2pm))
                 district_temperatures.append(
                     {
                         "name": district.get('name'),
@@ -74,3 +81,17 @@ class DistrictTemperature:
 
         else:
             return None
+
+    def get_district_temperature_by_name(self, name, date):
+        response = requests.get(district_url)
+        if response.status_code == 200:
+            json_data = response.json()
+            districts_info = json_data.get('districts', [])
+            for district in districts_info:
+                if district.get('name') == name:
+                    temperatures = self.get_temperature(
+                        district=district,
+                        date=date
+                    )
+
+                    return temperatures[14]
