@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+import datetime
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -35,10 +36,13 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 CUSTOM_APPS = [
     'CoolWeather.apps.CoolweatherConfig',
+    'authentication.apps.AuthenticationConfig'
 ]
 
 THIRD_PARTY_APPS = [
     'rest_framework',
+    'rest_framework_simplejwt',
+    'corsheaders'
 ]
 
 INSTALLED_APPS = [
@@ -99,6 +103,20 @@ DATABASES = {
     }
 }
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(hours=10),
+    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=1),
+    "ALGORITHM": "HS256",
+    "SIGNING_KEY": SECRET_KEY,
+}
+
+AUTH_USER_MODEL = "authentication.User"
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

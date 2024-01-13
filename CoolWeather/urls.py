@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import CoolestDistricts,TravelRecommendationView
+from .views import CoolestDistricts, TravelRecommendationView
 
 urlpatterns = [
     path('coolest-districts/', CoolestDistricts.as_view(),

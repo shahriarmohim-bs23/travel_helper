@@ -1,18 +1,23 @@
 import logging
+import time
+from django.contrib.auth import get_user_model
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
 from .serializers import CoolestDistrictSerializer, \
     TravelRecommendationSerializer
 from .services import DistrictTemperature
-import time
 
 logger = logging.getLogger(__name__)
+User = get_user_model()
 
 district_temperature = DistrictTemperature()
 
 
 class CoolestDistricts(APIView):
+    permission_classes = [IsAuthenticated]
+
     def get(self, request):
         try:
             start_time = time.time()
@@ -42,6 +47,8 @@ class CoolestDistricts(APIView):
 
 
 class TravelRecommendationView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def post(self, request):
         try:
             serializer = TravelRecommendationSerializer(data=request.data)
