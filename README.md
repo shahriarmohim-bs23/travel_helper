@@ -1,6 +1,6 @@
 # travel_helper
 ### Clone the Repository
-# Clone the repo git clone https://github.com/shahriarmohim-bs23/travel_helper.git
+# git clone https://github.com/shahriarmohim-bs23/travel_helper.git
 cd travel_helper
 ### Create Virtual Environment
 pip3 install virtualenv
